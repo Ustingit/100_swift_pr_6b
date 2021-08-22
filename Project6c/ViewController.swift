@@ -57,8 +57,13 @@ class ViewController: UIViewController {
             view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[\(label)]|", options: [], metrics: nil, views: viewsDictionary))
         }
         
-        //add vertical layout constraint, - here means space between items, there is no pipe sign after items so there will be white space after them
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1]-[label2]-[label3]-[label4]-[label5]", options: [], metrics: nil, views: viewsDictionary))
+        let metrics = ["labelHeight": 88]
+        
+        //add vertical layout constraint, - here means space between items, there is no pipe sign after items so there will be white space after them. Pipe in the end means end of the screen. 80 - exact size of item.
+        //label1 means to use the same characteristics as label1
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1(labelHeight@999)]-[label2(label1)]-[label3(label1)]-[label4(label1)]-[label5(label1)]-(>=10)-|", options: [], metrics: metrics, views: viewsDictionary))
+        
+        
     }
 
 
