@@ -64,10 +64,15 @@ class ViewController: UIViewController {
 //        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1(labelHeight@999)]-[label2(label1)]-[label3(label1)]-[label4(label1)]-[label5(label1)]-(>=10)-|", options: [], metrics: metrics, views: viewsDictionary))
         
         var previous: UILabel?
+        let mainViewHeight = view.bounds.size.height
+        let itemHeight = (mainViewHeight / 5) - 10
         
         for label in [label1, label2, label3, label4, label5] {
-            label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-            label.heightAnchor.constraint(equalToConstant: 88).isActive = true
+            //other option for 2 anchors below is: label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+            label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+            label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+            
+            label.heightAnchor.constraint(equalToConstant: itemHeight).isActive = true
             
             if let previous = previous {
                 label.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: 10).isActive = true
